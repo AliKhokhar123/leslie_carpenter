@@ -55,12 +55,15 @@
                             </svg>
                         </div>
                         <div class="heading">Contact information</div>
-                        <div class="para">Thank you for considering us for your dental needs. We will get back to you during normal business hours.</div>
+                        <div class="para">Thank you for considering us for your dental needs. We will get back to you
+                            during normal business hours.</div>
                         <div class="contact-details">
-                            <p><img src="https://lapeyreroofing.com/images/icons/phone-icon.svg" alt="">(626) 795-4369</p>
+                            <p><img src="https://lapeyreroofing.com/images/icons/phone-icon.svg" alt="">(626) 795-4369
+                            </p>
                             <p><img src="https://lapeyreroofing.com/images/icons/mail-icon.svg"
                                     alt="">welcome.lmhcdds@att.net</p>
-                            <p><img src="https://lapeyreroofing.com/images/icons/location-svgrepo-com.svg" alt="">133 S Hudson Ave, Pasadena, CA 91101</p>
+                            <p><img src="https://lapeyreroofing.com/images/icons/location-svgrepo-com.svg" alt="">133 S
+                                Hudson Ave, Pasadena, CA 91101</p>
                         </div>
 
                         <div class="form-logo">
@@ -168,3 +171,61 @@
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function () {
+        $('#contact-form').on('submit', function (e) {
+            console.log("form submit");
+            e.preventDefault();
+
+            const name = $('#name').val().trim();
+            const email = $('#email').val().trim();
+            const phone = $('#phone').val().trim();
+            const message = $('#message').val().trim();
+            const messageDiv = $('.showMessage');
+
+            // Simple validation
+            if (!name || !email || !phone || !message) {
+                messageDiv.text('Please fill in all fields.').css('color', 'red');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\+?[0-9\s\-()]{7,20}$/;
+
+            if (!emailRegex.test(email)) {
+                messageDiv.text('Please enter a valid email address.').css('color', 'red');
+                return;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                messageDiv.text('Please enter a valid phone number.').css('color', 'red');
+                return;
+            }
+
+            $.ajax({
+                url: './assets/php/submit-form-contact.php',
+                type: 'POST',
+                data: {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    message: message
+                },
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                    if (response.status === 'success') {
+                        messageDiv.text(response.message).css('color', 'green');
+                        $('#contact-form')[0].reset();
+                    } else {
+                        messageDiv.text(response.message).css('color', 'red');
+                    }
+                },
+                error: function (xhr) {
+                    messageDiv.text('Something went wrong. Please try again later.').css('color', 'red');
+                }
+            });
+        });
+    });
+</script>
