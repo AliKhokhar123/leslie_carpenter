@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Sender & recipient
         $mail->setFrom('groundsmenwebsiteform@gmail.com', 'Leslie Carpenter Appointment');
-        $mail->addAddress('muhammadumair25591@gmail.com');
+        $mail->addAddress('access@sustain-media.com');
 
         // Email body
         $mail->isHTML(true);
-        $mail->Subject = 'NEW Website Lead - Contact Form Submission';
+        $mail->Subject = 'NEW Appointment Request - Website Form Submission';
         $mail->Body    = "
             <h2>Contact Form Submission</h2>
             <p><strong>Name:</strong> {$name}</p>

@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Port       = 587;
 
         $mail->setFrom('groundsmenwebsiteform@gmail.com', 'Leslie Carpenter Appointment');
-        $mail->addAddress('muhammadumair25591@gmail.com');
+        $mail->addAddress('access@sustain-media.com');
 
         $mail->isHTML(true);
-        $mail->Subject = 'NEW Website Lead - Schedule Form Submission';
+        $mail->Subject = 'NEW Appointment Request - Website Form Submission';
         $mail->Body    = "
             <h2>Schedule Form Submission</h2>
             <p><strong>Name:</strong> {$name}</p>
