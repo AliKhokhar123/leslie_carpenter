@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $mail->setFrom('carpenterddswebsiteform@gmail.com', 'Leslie Carpenter Appointment');
         $mail->addAddress('access@sustain-media.com');
+        $mail->addAddress('welcome.lmhcdds@att.net');
 
         $mail->isHTML(true);
         $mail->Subject = 'NEW Appointment Request - Website Form Submission';

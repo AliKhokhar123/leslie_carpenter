@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Sender & recipient
         $mail->setFrom('carpenterddswebsiteform@gmail.com', 'Leslie Carpenter Appointment');
         $mail->addAddress('access@sustain-media.com');
+        $mail->addAddress('welcome.lmhcdds@att.net');
 
         // Email body
         $mail->isHTML(true);
